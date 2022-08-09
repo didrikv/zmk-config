@@ -9,6 +9,44 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
+            behaviors {
+                spaceb: space_backspace {
+                    compatible = "zmk,behavior-mod-morph";
+                    label = "SPACE_BACKSPACE";
+                    #binding-cells = <0>;
+                    bindings = <&kp SPACE>, <&kp BSPC>;
+                    mods = <(MOD_LCTL)>;
+                };
+                td0: tap_dance_0 {
+                    compatible = "zmk,behavior-tap-dance";
+                    label = "TAP_DANCE_0";
+                    #binding-cells = <0>;
+                    tapping-term-ms = <200>;
+                    bindings = <&kp SQT>, <&kp DQT>;
+                };
+                td1: tap_dance_0 {
+                    compatible = "zmk,behavior-tap-dance";
+                    label = "TAP_DANCE_1";
+                    #binding-cells = <0>;
+                    tapping-term-ms = <200>;
+                    bindings = <&kp LBRC>, <&kp RBRC>;
+                };
+                td2: tap_dance_0 {
+                    compatible = "zmk,behavior-tap-dance";
+                    label = "TAP_DANCE_2";
+                    #binding-cells = <0>;
+                    tapping-term-ms = <200>;
+                    bindings = <&kp LPAR>, <&kp RPAR>;
+                };
+                td3: tap_dance_0 {
+                    compatible = "zmk,behavior-tap-dance";
+                    label = "TAP_DANCE_3";
+                    #binding-cells = <0>;
+                    tapping-term-ms = <200>;
+                    bindings = <&kp LBKT>, <&kp RBKT>;
+                };
+            };
+            
         keymap {
                 compatible = "zmk,keymap";
 
@@ -17,39 +55,39 @@
 // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
 // | ESC  |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  | ENT  |
 // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | SHFT |
-//                    | GUI |CTRL | LWR |   | RSE | SPC  | ALT |
+//                    | SHFT| CTL | RSE |   | LWR | SPC  | ALT |
                         bindings = <
    &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp ESC &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp RET
+   &kp ESC &kp A &kp S &kp D &kp F &kp G     &kp H &kp J  &kp K     &kp L   &kp SEMI &kp RET
    &sk LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &sk RSHFT
-                  &kp LGUI &kp LCTRL &mo 1   &mo 2 &kp SPACE &kp RALT
+                  &sk LSHFT &kp LCTRL &mo 2   &mo 1 &spaceb &kp RALT
                         >;
                 };
                 lower_layer {
 // -----------------------------------------------------------------------------------------
-// | TAB  |     |     |     |     |     |   |  -  |  7  |  8  |  9  |  +  |  *   |
-// | ESC  |     |     |     |     |     |   |  _  |  4  |  5  |  6  |  =  |  /   |
-// | SHFT |     |     |     |     |     |   |  .  |  1  |  2  |  3  |  0  | SHFT |
-//                    | GUI | CTRL| LWR |   | RSE | SPC | ALT |
+// | TAB  |     |     |     |     |     |   |  -  |  7  |  8  |  9  |  0  |  *   |
+// | ESC  |     |     |     |     |     |   |  .  |  4  |  5  |  6  |  =  |  +   |
+// | SHFT |     |     |     |     |     |   |  %  |  1  |  2  |  3  |  /  |  ^   |
+//                    | SHFT| CTRL| RSE |   | LWR | SPC | ALT |
                         bindings = <
-   &trans &none &none &none &none &none     &kp MINUS &kp N7 &kp N8 &kp N9 &kp PLUS &kp ASTRK
-   &trans &none &none &none &none &none     &kp UNDER &kp N4 &kp N5 &kp N6 &kp EQUAL &kp FSLH
-   &trans &none &none &none &none &none     &kp DOT &kp N1 &kp N2 &kp N3 &kp N0 &trans
-                    &trans &trans &trans  &trans &trans &trans
+   &trans &none &none &none &none &none     &kp MINUS &kp N7 &kp N8 &kp N9 &kp N0 &kp ASTRK
+   &trans &none &none &none &none &none     &kp DOT &kp N4 &kp N5 &kp N6 &kp EQUAL &kp PLUS
+   &trans &none &none &none &none &none     &kp PRCNT &kp N1 &kp N2 &kp N3 &trans &kp CARET
+                    &trans &trans &trans    &trans &trans &trans
                         >;
                 };
 
                 raise_layer {
 // -----------------------------------------------------------------------------------------
-// | TAB  |     |     |     |     |     |   |  ^  |     |  {  |  }  |     | BKSP |
-// | ESC  |  !  |  @  |  #  |  $  |  %  |   |  &  |  *  |  (  |  )  |  '  |  \   |
-// | SHFT |     |     |     |     |     |   |  |  |     |  [  |  ]  |  "  | SHFT |
-//                    | GUI | CTRL| LWR |   | RSE | SPC | ALT |
+// | TAB  |  `  | up  |  #  |  ~  |  @  |   |  -  |  $  |  {} |  &  |  '" |  *   |
+// | ESC  |right| down| left|     |     |   |  .  |  _  |  () |  !  |  =  |  +   |
+// | SHFT |     |     |     |     |     |   |  %  |  \  |  [] |  |  |  /  |  ^   |
+//                    | SHFT| CTRL| RSE |   | LWR | SPC | ALT |
                         bindings = <
-   &trans &none &none &none &none &none                 &kp CARET &none &kp LBRC &kp RBRC &none &trans
-   &trans &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp AMPS &kp ASTRK &kp LPAR &kp RPAR &kp SQT &kp BSLH
-   &trans &none &none &none &none &none                 &kp PIPE &none &kp LBKT &kp RBKT &kp DQT &trans
-            &kp LGUI &trans   &kp SPACE                 &kp RET   &trans    &kp RALT
+   &trans &kp GRAVE &kp UP &kp HASH &kp TILDE &kp AT    &kp MINUS &kp DLLR &td1 &kp AMPS &td0 &kp ASTRK
+   &trans &none &kp LEFT &kp DOWN &kp RIGHT &none       &kp DOT &kp UNDER &td2 &kp EXCL &kp EQUAL &kp PLUS
+   &trans &none &none &none &none &none                 &kp PRCNT &kp BSLH &td3 &kp PIPE &trans &kp CARET
+                          &trans &trans &kp SPACE       &trans  &trans  &trans
                         >;
                 };
         };
