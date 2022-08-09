@@ -71,7 +71,7 @@
 //                    | META| SPC | RSE |   | LWR | SPC  | CTL |
                         bindings = <
    &trans &kp HOME &none &kp UP &none &kp PG_UP     &kp MINUS &kp N7 &kp N8 &kp N9 &kp N0 &kp ASTRK
-   &trans &kp END &kp LEFT &kp DOWN &kp RIGHT &kp PG_DOWN     &kp DOT &kp N4 &kp N5 &kp N6 &kp EQUAL &kp PLUS
+   &trans &kp END &kp LEFT &kp DOWN &kp RIGHT &kp PG_DN     &kp DOT &kp N4 &kp N5 &kp N6 &kp EQUAL &kp PLUS
    &trans &none &none &none &none &none     &kp PRCNT &kp N1 &kp N2 &kp N3 &trans &kp CARET
                     &trans &kp SPACE &trans    &trans &trans &trans
                         >;
