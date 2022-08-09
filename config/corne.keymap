@@ -15,7 +15,7 @@
                     label = "SPACE_BACKSPACE";
                     #binding-cells = <0>;
                     bindings = <&kp SPACE>, <&kp BSPC>;
-                    mods = <(MOD_LSHFT)>;
+                    mods = <(MOD_LSFT)>;
                 };
                 td0: tap_dance_0 {
                     compatible = "zmk,behavior-tap-dance";
